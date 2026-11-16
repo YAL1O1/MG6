@@ -11,6 +11,7 @@ public class Cat : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _jump;
     [SerializeField] private float _attackCooldown;
+    [SerializeField] Collider2D _platform;
 
     private bool _facingLeft;
     private bool _isGrounded = true;
@@ -64,9 +65,9 @@ public class Cat : MonoBehaviour
         //      collider.
         // You might want to check the Rigidbody2D scripting documentation
         //      for a useful variable :)
-        
 
-        
+        _platform.enabled = _rigidbody.linearVelocityY > 0 ? false : true;
+
         // STEP 1 -------------------------------------------------------------
     }
 
@@ -81,7 +82,7 @@ public class Cat : MonoBehaviour
     }
 
     // ------------------------------------------------------------------------
-    private void Attack ()
+    private void Attack()
     {
         _attackTime = _attackCooldown;
         _animator.SetTrigger("attack");
